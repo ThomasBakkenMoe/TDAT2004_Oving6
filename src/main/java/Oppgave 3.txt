@@ -1,0 +1,16 @@
+Forklaring på bildet fra oppgave 3.
+I oppgave 3 kjører jeg to instanser som begge kjører to spørringer:
+
+    1. spørring, trekk 500 kr fra konto nr. 1
+    2. spørring, sett inn 500 kr på konro nr. 2
+
+Konto nr. 1 starter 500 kr, konto nr. 2 starter med 100 kr.
+Om oppgave 3 hadde kjørt slik som vi forventer, ville resultatet blitt slik:
+
+    Konto nr. 1: -500 kr
+    Konto nr. 2: 2000 kr
+
+Men, fordi tabellen ikke blir låst under transaksjoner får vi dette resultatet:
+
+    Konto nr. 1: 0 kr
+    Konto nr. 2: 1500 kr

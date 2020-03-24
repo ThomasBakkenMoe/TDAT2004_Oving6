@@ -1,0 +1,12 @@
+Oppgave 1 - Hva er optimistisk låsing?
+Optimistisk låsing er en mekanisme for å forhindre at data går tapt i skriving til (i dette tilfellet) en tabell i en database.
+Denne typen låsing antar at det er flere klienter som skal else enn de som skal skrive til tabellen.
+Tabellen blir ikke låst når en klient skal lese fra den.
+
+Når en klient skal skrive til tabellen, startes en transaksjon, og en lokal versjon av tabellen lages.
+I tabellen har vi en "låsekolonne" av typen integer som teller opp hver gang det gjøres en endring av en rad.
+Før transaksjonen vår utføres (commit) sjekker vi om feltet i låsekolonnen stemmer med vår lokale versjon.
+Hvis det stemmer, blir endringen vår utført og lagret i databasen, hvis ikke må vi hente den nye dataen og gjøre transakjonen vår på nytt.
+
+Merk her at tabellen vår aldri faktisk blir låst, så om det er mye skriving inn mot tabellen, er det fare for at en transaksjon må beregnes mange ganger før de endelig kan lagres.
+Det er derfor dette kalles en "optimistisk" lås, da vi antar at det ikke kommer til å være så mye trafikk inn mot tabellen at vi ikke rekker å bli ferdig med beregningen vår i tide.
